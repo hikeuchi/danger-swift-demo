@@ -22,7 +22,7 @@ func runMain() {
     var isAllCheckPassed = true
 
     // タイトルにFONTELIER_V2-が含まれているかどうか
-    let title = danger.github.pullRequest.title
+//    let title = danger.github.pullRequest.title
     let hasIssuesNumber = danger.github.pullRequest.title.contain(pattern: "FONTELIER_V2-[0-9]")
     if hasIssuesNumber == false {
         warn("タイトルに FONTELIER_V2- が含まれていません。")
