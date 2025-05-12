@@ -40,9 +40,9 @@ func runMain() {
     }
 
     // SwiftLint
-    SwiftLint.lint(.modifiedAndCreatedFiles(directory: "../DangerDemo/"),
+    SwiftLint.lint(.modifiedAndCreatedFiles(directory: "./DangerDemo/"),
                    inline: true,
-                   configFile: "../swiftlint.yml")
+                   configFile: "./DangerDemo/swiftlint.yml")
 
 }
 
