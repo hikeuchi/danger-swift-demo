@@ -5,6 +5,11 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch: # 手動実行用のトリガー
 
+permissions:
+  issues: write
+  pull-requests: write
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
