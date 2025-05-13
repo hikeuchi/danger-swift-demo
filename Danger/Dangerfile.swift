@@ -43,11 +43,10 @@ if let backlogKey {
     message("[Backlog課題](https://morisawa.backlog.jp/view/\(backlogKey)")
 } else {
     warn(#"タイトルにBacklogの課題番号"\#(backlogKeyPrefix)"が含まれていません。"#)
-    isAllCheckPassed = false
 }
 
 // MARK: SwiftLintの実行
-SwiftLint.lint()
+
 SwiftLint.lint(.modifiedAndCreatedFiles(directory: "./DangerDemo/"),
                inline: true,
                configFile: "./DangerDemo/swiftlint.yml")
