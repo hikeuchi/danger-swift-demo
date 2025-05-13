@@ -40,7 +40,7 @@ func extractBacklogKeyFromTitle(_ title: String) -> String? {
 
 let backlogKey = extractBacklogKeyFromTitle(danger.github.pullRequest.title)
 if let backlogKey {
-    message("[Backlog課題](https://morisawa.backlog.jp/view/\(backlogKey))")
+    message("[Backlogの対応課題](https://morisawa.backlog.jp/view/\(backlogKey))")
 } else {
     warn(#"タイトルにBacklogの課題番号"\#(backlogKeyPrefix)"が含まれていません。"#)
 }
