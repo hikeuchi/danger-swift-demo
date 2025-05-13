@@ -48,6 +48,6 @@ if let backlogKey {
 // MARK: SwiftLintの実行
 //SwiftLint.lint()
 
-SwiftLint.lint(.modifiedAndCreatedFiles(directory: "../DangerDemo/"),
+SwiftLint.lint(.modifiedAndCreatedFiles(directory: "DangerDemo/"),
                inline: true,
-               configFile: "../DangerDemo/swiftlint.yml")
+               configFile: "DangerDemo/swiftlint.yml")
