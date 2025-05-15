@@ -2,41 +2,19 @@ name: Danger Swift
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-  workflow_dispatch: # 手動実行用のトリガー
-
-permissions:
-  issues: write
-  pull-requests: write
-
+  workflow_dispatch:
 
 jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#    name: "Run Danger"
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: Danger
-##        uses: docker://ghcr.io/danger/danger-swift-with-swiftlint:3.15.0
-#        uses: danger/swift@3.21.1
-#        with:
-#            args: --failOnErrors --no-publish-check
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  SwiftLint:
+  # Danger
+  # https://github.com/danger/swift
+  danger:
     runs-on: ubuntu-latest
+    name: "Run Danger"
     steps:
-      - uses: actions/checkout@v1
-      - name: Download SwiftLint
-        run: |
-          curl -L -o swiftlint.tar.gz https://github.com/realm/SwiftLint/releases/download/0.53.0/portable_swiftlint_linux.tar.gz
-          tar -xzf swiftlint.tar.gz
-          chmod +x swiftlint
-          sudo mv swiftlint /usr/local/bin/
-
-      - name: Run SwiftLint
-        run: swiftlint --strict
-
-#SwiftLint.lint(.modifiedAndCreatedFiles(directory: "../DangerDemo/"),
-
+      - uses: actions/checkout@v4
+      - name: Danger
+        uses: danger/swift@3.21.1
+        with:
+            args: --failOnErrors --no-publish-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
