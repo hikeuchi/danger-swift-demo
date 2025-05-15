@@ -12,6 +12,15 @@ jobs:
     name: "Run Danger"
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Cache SwiftPM build
+        uses: actions/cache@v3
+        with:
+          path: .build
+          key: ${{ runner.os }}-danger-build-${{ hashFiles('Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-danger-build-
+      
       - name: Danger
         uses: danger/swift@3.21.1
         with:
