@@ -16,6 +16,7 @@ jobs:
       - name: Danger
         uses: docker://ghcr.io/danger/danger-swift:3.15.0
         with:
-            args: --failOnErrors --no-publish-check
+            args: --failOnErrors --no-publish-check --dangerfile DangerStorage/Dangerfile.swift
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
