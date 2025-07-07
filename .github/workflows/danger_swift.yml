@@ -5,18 +5,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Danger
-  # https://github.com/danger/swift
-  danger:
+  build:
     runs-on: ubuntu-latest
     name: "Run Danger"
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Danger
-        uses: docker://ghcr.io/danger/danger-swift:3.15.0
+
+      - name: Cache Danger Swift build
+        uses: actions/cache@v4
         with:
-            args: --failOnErrors --no-publish-check --dangerfile DangerStorage/Dangerfile.swift
+          path: ~/.danger-swift
+          key: danger-swift-${{ runner.os }}-${{ hashFiles('.github/Dangerfile.swift') }}
+          restore-keys: |
+            danger-swift-${{ runner.os }}-
+
+      - name: Run Danger
+        uses: danger/swift@3.15.0
+        with:
+          args: --failOnErrors --no-publish-check
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
