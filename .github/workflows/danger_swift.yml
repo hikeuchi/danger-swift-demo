@@ -1,0 +1,27 @@
+name: Danger Swift
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: "Run Danger"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Danger Swift build
+        uses: actions/cache@v4
+        with:
+          path: ~/.danger-swift
+          key: danger-swift-${{ runner.os }}-${{ hashFiles('.github/Dangerfile.swift') }}
+          restore-keys: |
+            danger-swift-${{ runner.os }}-
+
+      - name: Run Danger
+        uses: danger/swift@3.21.2
+        with:
+          args: --failOnErrors --no-publish-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
